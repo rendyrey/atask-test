@@ -8,6 +8,8 @@ development:
 
 test:
   <<: *default
+  secrets:
+    secret_key_base: "abcd1234"
 
 production:
   <<: *default

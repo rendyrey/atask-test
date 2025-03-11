@@ -36,7 +36,7 @@ class Api::V1::TransactionController < ApplicationController
       is_valid, message = Transaction.valid_withdraw?(@current_user, withdraw_params)
       raise message unless is_valid
 
-      Transaction.create({
+      Transaction.create!({
         source_wallet_id: params[:wallet_id],
         amount: params[:amount],
         transaction_type: :debit,

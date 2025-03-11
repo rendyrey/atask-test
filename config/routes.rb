@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         post "create" => "account#create"
         get "balance" => "account#account_balance"
         get "wallets" => "account#account_wallets"
+        get "info" => "account#show"
       end
 
       post "login" => "authentication#login"

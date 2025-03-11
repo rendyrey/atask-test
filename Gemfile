@@ -42,12 +42,7 @@ gem "jwt"
 gem "bcrypt"
 gem "whenever"
 
-# for testing requirements
-gem "rspec-rails"
-gem "rubocop"
-gem "rubocop-rails"
-gem "faker"
-gem "shoulda-matchers"
+
 
 # for pagination
 gem "kaminari"
@@ -61,4 +56,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # for testing requirements
+  gem "factory_bot_rails"
+  gem "rspec-rails"
+  gem "rubocop"
+  gem "rubocop-rails"
+  gem "faker"
+  gem "shoulda-matchers"
 end

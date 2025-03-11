@@ -2,7 +2,6 @@
 
 class Api::V1::AccountController < ApplicationController
   skip_before_action :authenticate_user, only: [ :create ]
-  before_action :find_user, only: [ :show ]
 
   def get
     page_param = params[:page] || 1
@@ -29,7 +28,8 @@ class Api::V1::AccountController < ApplicationController
   end
 
   def show
-    render json: @account, status: :ok
+    wallets = @current_user.wallets.includes(:entity)
+    render json: @current_user.as_json(except: :password_digest).merge(wallets: wallets), status: :ok
   end
 
   def create
