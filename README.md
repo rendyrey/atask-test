@@ -30,7 +30,7 @@ rails s
 ```
 - By default the url will be: <code>localhost:3000</code>
 
-- If you want to test the controller, you can use Rspec with this command:
+### If you want to test the controller, you can use Rspec with this command:
 ```sh
 rspec spec/requests/api/v1 --format documentation
 ```
