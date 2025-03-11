@@ -40,9 +40,9 @@ gem "thruster", require: false
 # for sign in and authentication
 gem "jwt"
 gem "bcrypt"
+
+# for jobs
 gem "whenever"
-
-
 
 # for pagination
 gem "kaminari"
