@@ -5,8 +5,27 @@ class Api::V1::AccountController < ApplicationController
   before_action :find_user, only: [ :show ]
 
   def get
-    @accounts = Account.all
-    render json: @accounts, status: :ok
+    page_param = params[:page] || 1
+    if page_param.blank?
+      render json: { error: true, message: "Page parameter is required" }, status: :unprocessable_entity
+    end
+
+    per_page = params[:per_page] || 10
+
+    @accounts = Account.page(page_param).per(per_page)
+    current_page = @accounts.current_page
+    total_pages = @accounts.total_pages
+
+    render json: {
+      meta: {
+        total_pages: total_pages,
+        current_page: current_page,
+        next_page: next_page_link(current_page, total_pages, per_page),
+        prev_page: prev_page_link(current_page, per_page),
+        total_count: @accounts.total_count
+      },
+      data: @accounts
+    }, status: :ok
   end
 
   def show
@@ -55,5 +74,17 @@ class Api::V1::AccountController < ApplicationController
 
     def find_user
       @account = Account.find(params[:id])
+    end
+
+    def next_page_link(current_page, total_pages, per_page)
+      return nil if current_page >= total_pages
+
+      url_for(controller: controller_name, action: action_name, page: current_page + 1, per_page: per_page)
+    end
+
+    def prev_page_link(current_page, per_page)
+      return nil if current_page <= 1
+
+      url_for(controller: controller_name, action: action_name, page: current_page - 1, per_page: per_page)
     end
 end

@@ -11,7 +11,6 @@ class Api::V1::TransactionController < ApplicationController
     rescue => e
       render json: { error: true, message: e.message }, status: :unprocessable_entity
     end
-    # Transaction.create!(transaction_params)
   end
 
   def top_up
