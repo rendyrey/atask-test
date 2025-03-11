@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AccountController < ApplicationController
+class Api::V1::AccountController < ApplicationController
   skip_before_action :authenticate_user, only: [ :create ]
   before_action :find_user, only: [ :show ]
 
@@ -37,6 +37,10 @@ class AccountController < ApplicationController
     rescue => e
       render json: { error: true, message: e.message }, status: :unprocessable_entity
     end
+  end
+
+  def account_wallets
+    render json: @current_user.wallets.as_json(only: [:id, :entity_id, :balance]), status: :ok
   end
 
   private

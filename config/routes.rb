@@ -12,16 +12,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      namespace :account do
+      scope :accounts do
         get "/" => "account#get"
         post "create" => "account#create"
         get "balance" => "account#account_balance"
+        get "wallets" => "account#account_wallets"
       end
 
       post "login" => "authentication#login"
 
-      namespace :transaction do
-        get "account_wallets" => "transaction#wallets"
+      scope :transaction do
         post "top-up" => "transaction#top_up"
         post "withdraw" => "transaction#withdraw"
         post "transfer" => "transaction#transfer"

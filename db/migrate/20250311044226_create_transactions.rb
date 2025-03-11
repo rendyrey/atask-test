@@ -13,6 +13,8 @@ class CreateTransactions < ActiveRecord::Migration[8.0]
 
       t.index [ :source_wallet_id, :transaction_date_time ]
       t.index [ :target_wallet_id, :transaction_date_time ]
+      t.index [ :source_wallet_id, :transaction_type]
+      t.index [ :target_wallet_id, :transaction_type]
     end
   end
 end

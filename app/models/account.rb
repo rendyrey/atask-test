@@ -10,6 +10,10 @@ class Account < ApplicationRecord
 
   has_many :wallets, dependent: :destroy
 
+  def update_balance
+    wallets.each { |wallet| wallet.update_balance }
+  end
+
   private
 
     def create_wallets
