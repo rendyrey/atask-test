@@ -9,4 +9,23 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  namespace :api do
+    namespace :v1 do
+      namespace :account do
+        get "/" => "account#get"
+        post "create" => "account#create"
+        get "balance" => "account#account_balance"
+      end
+
+      post "login" => "authentication#login"
+
+      namespace :transaction do
+        get "account_wallets" => "transaction#wallets"
+        post "top-up" => "transaction#top_up"
+        post "withdraw" => "transaction#withdraw"
+        post "transfer" => "transaction#transfer"
+      end
+    end
+  end
 end

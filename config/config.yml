@@ -1,0 +1,15 @@
+default: &default
+  app_name: "ROR Test Atask"
+
+development:
+  <<: *default
+  secrets:
+    secret_key_base: "abcd1234"
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  secrets:
+    secret_key_base: "abcd1234"
