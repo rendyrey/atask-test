@@ -1,24 +1,39 @@
-# README
+# Simple Wallet Transaction System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+version: 1.0.0 by Rendy Reynaldy A.
 
-Things you may want to cover:
+## Features
+- Login with JWT
+- Top-up, Withdraw, Transfer transactions
+- At the end of the day or at 23:00 everyday, all the account wallets will be recalculate to update the balance by looking all transactions.
 
-* Ruby version
+## Tech Used
+- [Ruby on Rails](https://rubyonrails.org/)
+- [SQLite]
 
-* System dependencies
+## Installation
+- Download or clone this repository
+- Go to project root directory & run this command for installing dependencies:
+```sh
+bundle install
+```
+- run this command to migrate database:
+```sh
+rails db:migrate
+rails db:seed
+RAILS_ENV=test rails db:migrate
+RAILS_ENV=test rails db:seed
+```
+- after migration successfull, run this command to run the server in your local machine:
+```sh
+rails s
+```
+- By default the url will be: <code>localhost:3000</code>
 
-* Configuration
+- If you want to test the controller, you can use Rspec with this command:
+```sh
+rspec spec/requests/api/v1 --format documentation
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Postman Collection
+- [Link to Postman Collection & Environment](https://drive.google.com/file/d/17Lrzx_m_-hnv8Cz7NnEdRhSuGcjREZNw/view?usp=sharing)
